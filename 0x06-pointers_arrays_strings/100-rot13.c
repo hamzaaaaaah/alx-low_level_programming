@@ -21,8 +21,7 @@ char *rot13(char *n)
 		for (x = 0; x <= 51; x++)
 		{
 			if (n[i] == toswap[x])
-			{
-				n[i] = n[i] + rot_c;
+			{ n[i] = n[i] + rot_c;
 				x = 51;
 			}
 			rot_c = rot_c * -1;
