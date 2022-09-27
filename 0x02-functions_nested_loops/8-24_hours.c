@@ -1,7 +1,10 @@
 #include "main.h"
 /**
- * jack bauer - func that prints every minute of the day of jack bauer, starting from 00:00 to 23:59, min loop count mins, while hour  * loop counts hours and resets mins
- * Return: 0
+ * jack bauer - fuction that prints every minute of the day, 24 hour clock
+ * h = hour, m = minutes
+ * 10 allows second digit to rotate
+ * for loop breaks before passing 24:00
+ * Return: 24 hour clock line by line
  */
 void jack_bauer(void)
 {
