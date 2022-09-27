@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * leet - Encode into 1337
@@ -17,7 +18,7 @@ char *leet(char *n)
 		{
 			if (n[i] == A1[j])
 			{
-				n[i] = A1[j];
+				n[i] = A2[j];
 			}
 		}
 	}
