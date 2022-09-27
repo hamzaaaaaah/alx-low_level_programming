@@ -27,6 +27,7 @@ char *rot13(char *n)
 			}
 			rot_c = rot_c * -1;
 		}
+		i++;
 	}
 	return (n);
 }
