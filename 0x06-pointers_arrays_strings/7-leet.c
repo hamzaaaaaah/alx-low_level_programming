@@ -1,26 +1,25 @@
 #include "main.h"
 
 /**
- * leet - Entry point
- * ONE if, TWO loops only...
+ * leet - Encode into 1337
  * @n: input
- * Return: Always 0 (Success)
+ * Return: value of n
  */
 char *leet(char *n)
 {
-	int i, x;
-	int find[] = {'a', 'A', 'e', 'E', 'o', 'O', 't', 'T', 'l', '
-			L'};
-	int replacer[] = {'4', '3', '0', '7', '1'};
+	int i, j;
+	char A1[] = "aAeEoOtTlL";
+	char A2[] = "4433007711";
 
 	for (i = 0; n[i] != '\0'; i++)
 	{
-		if (n[i] == find[x])
+		for (j= 0; j< 10; j++)
 		{
-			n[i] = replacer[x / 2];
-			x = 9;
+			if (n[i] == A1[j])
+			{
+				n[i] = A1[j];
+			}
 		}
 	}
-	
 	return (n);
 }
