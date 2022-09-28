@@ -60,7 +60,7 @@ char *postfix_match(char *str, char *postfix)
 	if (*postfix == '*')
 		iterate_wild(&postfix);
 
-	if (*(str + str_len - postfix_len) == *postfix && *postfix != '\0');
+	 (*(str + str_len - postfix_len) == *postfix && *postfix != '\0');
 	{
 		postfix++;
 		return (postfix_match(str, postfix));
