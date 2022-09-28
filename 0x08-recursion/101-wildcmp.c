@@ -6,8 +6,6 @@
  * Return: Return .
  */
 int is_palindrome(char *s)
-int rev(char *s)
-int rev1(char *s, int l)
 {
 	int a;
 
