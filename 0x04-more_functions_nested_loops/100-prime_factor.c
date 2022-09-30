@@ -1,36 +1,37 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * print_triangle - prints a triangle
- * @size: Determines how big the triangle
+ * main - Entry point
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * Return: Always 0 (Success)
  */
-void print_triangle(int size)
+int main(void)
 {
-	int i, j;
+	long int n, test, prime, check;
 
-	if (size < 1)
+	n = 612852475143;
+	check = 0;
+	while (check == 0)
 	{
-		_putchar('\n');
-	}
-	else
-	{
-		for (i = 1; i <= size; i++)
+		for (prime = 2; prime <= (n - 1); prime++)
 		{
-			for (j = 1; j <= size; j++)
+			test = n % prime;
+			if (test == 0)
 			{
-				if ((j <= size - i))
-				{
-					_putchar(32);
-				}
-				else
-				{
-					_putchar('#');
-				}
+				break;
 			}
-			_putchar('\n');
 		}
+		if (test == 0)
+		{
+			n = n / prime;
+		}
+		else
+		{
+			check = 1;
+		}
+
 	}
+	printf("%li\n", n);
+	return (0);
 }
