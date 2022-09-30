@@ -1,7 +1,5 @@
 #include "main.h"
 
-#include "holberton.h"
-
 /**
  * mul - multiplies two integers
  * @a: Input parameter Integer
