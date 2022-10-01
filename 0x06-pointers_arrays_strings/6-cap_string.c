@@ -1,34 +1,29 @@
-#include "main.h"
-
+include "main.h"
+#include <stdio.h>
 /**
- * cap_string - a function that capitalizes words of a string
- * @n: input string
- * Return: caps on first letter of a separator
+ * cap_string - capitalizes string
+ * @s: string to change
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
- char *cap_string(char *n)
+char *cap_string(char *s)
 {
-	int i, x;
-	int cap = 32;
-	int separators[] = {',', ';', '.', '?', '"',
-		'(', ')', '{', '}', ' ', '\n', '\t'};
+	int i, j, b;
 
-	for (i = 0; n[i] != '\0'; i++)
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	if ((s[0] >= 97) && (s[0] <= 122))
+		s[0] = s[0] - 32;
+	for (j = 1; j < i; j++)
 	{
-		if (n[i] >= 'a' && n[i] <= 'z')
-		{
-			n[i] = n[i] - cap;
-		}
-
-		cap = 0;
-
-		for (x = 0; x <= 12; x++)
-		{
-			if (n[i] == separators[x])
-			{
-				x = 12;
-				cap = 32;
-			}
-		}
+		b = j - 1;
+		if (s[b] == 9 || s[b] == 10 || (s[b] > 31 && s[b] < 35)
+		    || s[b] == '(' || s[b] == ')' || s[b] == ',' || s[b] == '.'
+		    || s[b] == ';' || s[b] == '?' || s[b] == '{' || s[b] == '}')
+			if ((s[j] > 96) && (s[j] < 123))
+				s[j] = s[j] - 32;
 	}
-	return (n);
+	return (s);
 }
