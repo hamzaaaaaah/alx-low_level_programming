@@ -1,4 +1,4 @@
-include "main.h"
+#include "main.h"
 
 /**
  * _strchr - eturns a pointer to the first occurrence of the
