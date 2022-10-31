@@ -1,73 +1,34 @@
 #include "main.h"
-void closer(int arg_files);
-/**
- * main - Entry Point
- * @argc: # of args
- * @argv: array pointer for args
- * Return: 0
- */
-int main(int argc, char *argv[])
-{
-	int file_from, file_to, file_from_r, wr_err;
-	char buf[1024];
-
-	if (argc != 3)
-	{
-		dprintf(2, "Usage: cp file_from file_to\n");
-		exit(97);
-	}
-
-	file_from = open(argv[1], O_RDONLY);
-	if (file_from == -1)
-	{
-		dprintf(2, "Error: Can't read from file %s\n", argv[1]);
-		exit(98);
-	}
-
-	file_to = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
-	if (file_to == -1)
-	{
-		dprintf(2, "Error: Can't write to %s\n", argv[2]);
-		exit(99);
-	}
-
-	while (file_from_r >= 1024)
-	{
-		file_from_r = read(file_from, buf, 1024);
-		if (file_from_r == -1)
-		{
-			dprintf(2, "Error: Can't read from file %s\n", argv[1]);
-			closer(file_from);
-			closer(file_to);
-			exit(98);
-		}
-		wr_err = write(file_to, buf, file_from_r);
-		if (wr_err == -1)
-		{
-			dprintf(2, "Error: Can't write to %s\n", argv[2]);
-			exit(99);
-		}
-	}
-
-	closer(file_from);
-	closer(file_to);
-	return (0);
-}
 
 /**
- * closer - close with error
- * @arg_files: argv 1 or 2
- * Return: void
+ * append_text_to_file - Appends text at the end of a file.
+ * @filename: A pointer to the name of the file.
+ * @text_content: The string to add to the end of the file.
+ *
+ * Return: If the function fails or filename is NULL - -1.
+ *         If the file does not exist the user lacks write permissions - -1.
+ *         Otherwise - 1.
  */
-void closer(int arg_files)
+int append_text_to_file(const char *filename, char *text_content)
 {
-	int close_err;
+	int o, w, len = 0;
 
-	close_err = close(arg_files);
+	if (filename == NULL)
+		return (-1);
 
-	if (close_err == -1)
+	if (text_content != NULL)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", arg_files);
-		exit(100);
+		for (len = 0; text_content[len];)
+			len++;
 	}
+
+	o = open(filename, O_WRONLY | O_APPEND);
+	w = write(o, text_content, len);
+
+	if (o == -1 || w == -1)
+		return (-1);
+
+	close(o);
+
+	return (1);
 }
