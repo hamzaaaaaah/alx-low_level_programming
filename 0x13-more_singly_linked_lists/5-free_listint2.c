@@ -1,19 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "lists.h"
+
 /**
- * free_listint2 - Entry Point
- * @head: head
- * Return: 0
+ * free_listint2 - Realease the memory allocated for a list
+ *
+ * @head: A pointer to the first node of the list to free
  */
 void free_listint2(listint_t **head)
 {
-	if (*head == NULL)
+	listint_t *tmp;
+
+	if (!(head && *head))
 		return;
-
-	while (*head)
+	while (*head != NULL)
 	{
+		tmp = (*head)->next;
 		free(*head);
-		*head = (*head)->next;
+		*head = tmp;
 	}
-
-	*head = NULL;
 }
